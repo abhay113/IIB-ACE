@@ -1,0 +1,20 @@
+
+
+CREATE DATABASE MODULE INSERT_USING_XML_Database
+    CREATE FUNCTION Main() RETURNS BOOLEAN
+    BEGIN
+        -- Declare a reference to the input XML data
+        DECLARE MyRef REFERENCE TO Root.XMLNSC.EMPLOYEE;
+
+        -- Define the schema and table name
+        DECLARE DBSchema CHARACTER 'ABHAY';				
+        DECLARE DBTable  CHARACTER 'EMPLOYEES';
+        
+        -- Insert data from the XML into the database
+        INSERT INTO Database.{DBSchema}.{DBTable} (ENO, ENAME, ECOUNTRY)
+            VALUES (MyRef.ENO, MyRef.ENAME, MyRef.ECOUNTRY);
+
+        RETURN TRUE;
+    END;
+END MODULE;
+	
