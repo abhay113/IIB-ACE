@@ -1,0 +1,18 @@
+
+CREATE COMPUTE MODULE xmltosonflow_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE jsonString CHARACTER;
+		-- Parse XML input
+		DECLARE inputRef REFERENCE TO InputRoot.XMLNSC.employee;
+		DECLARE eno INTEGER inputRef.eno;
+		DECLARE ename CHARACTER inputRef.ename;
+		DECLARE ecountry CHARACTER inputRef.ecountry;
+		-- Create JSON structure
+		SET OutputRoot.JSON.Data.eno = eno;
+		SET OutputRoot.JSON.Data.ename = ename;
+		SET OutputRoot.JSON.Data.ecountry = ecountry;
+
+		RETURN TRUE;
+	END;
+END MODULE;

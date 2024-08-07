@@ -1,0 +1,51 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0.0",
+    "title" : "Employee API",
+    "description" : "API for Employee Data"
+  },
+  "host" : "jsonplaceholder.typicode.com",
+  "basePath" : "/",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/posts" : {
+      "post" : {
+        "summary" : "Create a new employee record",
+        "description" : "Creates a new employee record in JSONPlaceholder",
+        "operationId" : "createEmployee",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Employee object",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "eno" : {
+                "type" : "integer"
+              },
+              "ename" : {
+                "type" : "string"
+              },
+              "ecountry" : {
+                "type" : "string"
+              }
+            },
+            "example" : {
+              "eno" : 1,
+              "ename" : "John Doe",
+              "ecountry" : "USA"
+            }
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Employee created"
+          }
+        }
+      }
+    }
+  }
+}
