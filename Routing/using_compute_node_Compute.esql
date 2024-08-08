@@ -1,0 +1,17 @@
+
+
+
+
+CREATE COMPUTE MODULE using_compute_node_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot = InputRoot;
+		DECLARE Country CHAR FIELDVALUE(InputRoot.JSON.Data.Country);
+		IF Country = 'IND' THEN
+			PROPAGATE TO LABEL 'IND';
+		ELSE
+			PROPAGATE TO LABEL 'ALL';
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;
