@@ -1,0 +1,18 @@
+
+CREATE COMPUTE MODULE ops_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.XMLNSC = InputRoot.XMLNSC;
+		DECLARE InRef REFERENCE TO InputRoot.XMLNSC.Operation;
+		CALL Operation(InRef);
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE Operation(IN ref Reference) BEGIN
+		SET OutputRoot.XMLNSC.Operation.Sum= CAST(ref.num1 AS INTEGER) + CAST(ref.num2 AS INTEGER);
+		SET OutputRoot.XMLNSC.Operation.Diff= CAST(ref.num1 AS INTEGER) - CAST(ref.num2 AS INTEGER);
+		SET OutputRoot.XMLNSC.Operation.Mult= CAST(ref.num1 AS INTEGER) * CAST(ref.num2 AS INTEGER);
+		SET OutputRoot.XMLNSC.Operation.Div= CAST(ref.num1 AS INTEGER) / CAST(ref.num2 AS INTEGER);
+		
+	END;
+END MODULE;

@@ -1,0 +1,12 @@
+
+CREATE COMPUTE MODULE EXCEP_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+
+		SET OutputRoot.XMLNSC = InputRoot.XMLNSC;
+
+		SET OutputExceptionList.ExceptionList.Exception = InputExceptionList;
+		RETURN TRUE;
+
+	END;
+END MODULE;

@@ -1,0 +1,14 @@
+
+CREATE COMPUTE MODULE countflow_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.XMLNSC = InputRoot.XMLNSC;
+		CALL CountArt();
+		RETURN TRUE;
+	END;
+	CREATE PROCEDURE CountArt( )
+	BEGIN
+		SET OutputRoot.XMLNSC.COUNT = (select count(*) from Database.Article);
+	END;
+
+END MODULE;

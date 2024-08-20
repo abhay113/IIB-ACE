@@ -1,0 +1,19 @@
+
+
+CREATE COMPUTE MODULE first_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.XMLNSC = InputRoot.XMLNSC;
+		-- Reference to the root element in the XML
+		DECLARE inRef REFERENCE TO InputRoot.XMLNSC.[<];
+		-- Check if the 'Operation' element exists under the root element
+		IF FIELDNAME(inRef) = 'Operation' THEN
+			PROPAGATE TO TERMINAL 'out1';
+		ELSE
+			-- Navigate to the next sibling in case the root element is not 'Operation'
+			PROPAGATE TO TERMINAL 'out';
+		END IF;
+
+		RETURN FALSE;
+	END;
+END MODULE;
